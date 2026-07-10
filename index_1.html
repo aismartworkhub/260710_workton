@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#101828" />
+<title>30일 AI 업무전환 실행권 | Smartwork 30 Sprint</title>
+<meta name="description" content="3분 진단으로 우리 조직의 AI 업무전환 유형과 실행 준비도를 확인하고, 맞춤형 30일 실행 로드맵과 신청서를 만들어보세요." />
+<meta property="og:title" content="30일 AI 업무전환 실행권" />
+<meta property="og:description" content="오늘의 아이디어를 30일 안에 실제 업무 변화로. AI 전환 진단, 맞춤 로드맵, 청년 AI 조교 동행 신청까지 한 번에." />
+<style>
+:root{
+  --ink:#101828; --ink-2:#344054; --muted:#667085; --line:#e4e7ec;
+  --paper:#f7f8fc; --card:#fff; --navy:#101828; --navy-2:#1d2939;
+  --brand:#5b4df5; --brand-2:#7c3aed; --brand-soft:#f1efff;
+  --mint:#12b76a; --mint-soft:#ecfdf3; --amber:#f79009; --amber-soft:#fffaeb;
+  --coral:#f04438; --coral-soft:#fef3f2; --blue:#2e90fa; --blue-soft:#eff8ff;
+  --shadow:0 16px 44px rgba(16,24,40,.10); --shadow-sm:0 3px 14px rgba(16,24,40,.07);
+  --radius:20px; --max:1120px; --narrow:720px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.58;letter-spacing:-.012em;-webkit-font-smoothing:antialiased}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit}
+img{max-width:100%}
+.wrap{width:min(calc(100% - 36px),var(--max));margin:auto}
+.narrow{width:min(calc(100% - 36px),var(--narrow));margin:auto}
+.screen{display:none;min-height:100vh;animation:enter .35s ease}
+.screen.active{display:block}
+@keyframes enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+
+/* shared */
+.topbar{height:68px;display:flex;align-items:center;background:rgba(255,255,255,.90);border-bottom:1px solid rgba(228,231,236,.9);backdrop-filter:blur(12px);position:sticky;top:0;z-index:30}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.035em}
+.logo-mark{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 8px 18px rgba(91,77,245,.25)}
+.logo small{display:block;color:var(--muted);font-size:10px;line-height:1.1;letter-spacing:.06em;text-transform:uppercase}
+.btn{border:0;border-radius:13px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 18px;font-weight:800;text-decoration:none;transition:.16s ease;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:0 9px 20px rgba(91,77,245,.22)}
+.btn:hover{transform:translateY(-1px);box-shadow:0 12px 24px rgba(91,77,245,.27)}
+.btn:active{transform:translateY(0)}
+.btn.secondary{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+.btn.ghost{background:transparent;color:var(--muted);box-shadow:none}
+.btn.small{padding:10px 13px;border-radius:10px;font-size:13px}
+.btn.full{width:100%}
+.btn[disabled]{opacity:.48;cursor:not-allowed;transform:none}
+.section{padding:82px 0}
+.section.tight{padding:54px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);margin-bottom:12px}
+h1,h2,h3,p{margin-top:0}
+h1,h2,h3{line-height:1.22;letter-spacing:-.035em}
+h2{font-size:clamp(28px,4vw,42px);margin-bottom:14px}
+h3{font-size:20px;margin-bottom:8px}
+.lead{font-size:18px;color:var(--ink-2)}
+.muted{color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:var(--brand-soft);color:var(--brand);font-size:12px;font-weight:800}
+.divider{height:1px;background:var(--line);margin:34px 0}
+
+/* intro */
+.hero{padding:72px 0 62px;background:
+ radial-gradient(600px 320px at 10% 0%,rgba(124,58,237,.20),transparent 72%),
+ radial-gradient(520px 300px at 92% 8%,rgba(46,144,250,.20),transparent 72%),
+ linear-gradient(180deg,#fff,#f7f8fc);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:60px;align-items:center}
+.hero h1{font-size:clamp(40px,5.4vw,66px);margin:16px 0 20px;max-width:780px}
+.hero h1 em{font-style:normal;color:var(--brand)}
+.hero-copy{font-size:19px;color:var(--ink-2);max-width:660px;margin-bottom:28px}
+.hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.hero-meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:24px;color:var(--muted);font-size:13px;font-weight:700}
+.hero-meta span{display:flex;align-items:center;gap:6px}
+.preview{padding:18px;position:relative;background:linear-gradient(145deg,#111827,#312e81);border:none;box-shadow:0 28px 70px rgba(49,46,129,.25);color:#fff;transform:rotate(1.2deg)}
+.preview::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(255,255,255,.5),transparent);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.preview-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.preview-dots{display:flex;gap:6px}.preview-dots i{display:block;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.34)}
+.preview-badge{font-size:11px;padding:6px 9px;border:1px solid rgba(255,255,255,.18);border-radius:999px;color:rgba(255,255,255,.8)}
+.preview-body{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px}
+.preview-score{display:flex;gap:18px;align-items:center}
+.mini-ring{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#a78bfa 0 76%,rgba(255,255,255,.12) 76%);position:relative;font-weight:900}
+.mini-ring::after{content:"";position:absolute;width:54px;height:54px;border-radius:50%;background:#292561}
+.mini-ring span{position:relative;z-index:1}
+.preview h3{font-size:24px;margin:20px 0 8px}
+.preview-road{display:grid;gap:9px;margin-top:18px}
+.preview-road div{display:grid;grid-template-columns:42px 1fr;gap:10px;align-items:center;font-size:12px;color:rgba(255,255,255,.83)}
+.preview-road b{display:grid;place-items:center;height:32px;border-radius:9px;background:rgba(255,255,255,.10)}
+.stat-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:-20px;position:relative;z-index:2}
+.stat{padding:22px}.stat strong{display:block;font-size:21px;margin-bottom:4px}.stat span{font-size:13px;color:var(--muted)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feature{padding:25px}.feature-icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--brand-soft);font-size:22px;margin-bottom:18px}.feature p{color:var(--muted);font-size:14px;margin-bottom:0}
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;counter-reset:step}
+.process-item{padding:22px;position:relative}.process-item::before{counter-increment:step;content:"0" counter(step);font-size:12px;font-weight:900;color:var(--brand);letter-spacing:.08em}.process-item b{display:block;font-size:17px;margin:14px 0 6px}.process-item span{font-size:13px;color:var(--muted)}
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.fit-card{padding:26px}.fit-card ul{padding:0;margin:18px 0 0;list-style:none;display:grid;gap:12px}.fit-card li{display:flex;gap:9px;font-size:14px;color:var(--ink-2)}
+.criteria{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}.criteria-list{display:grid;gap:10px}.criterion{display:grid;grid-template-columns:1fr auto;gap:10px;padding:14px 16px;border-radius:14px;background:#fff;border:1px solid var(--line)}.criterion b{font-size:14px}.criterion span{font-weight:900;color:var(--brand)}
+.cta-band{padding:42px;border-radius:28px;background:linear-gradient(135deg,#111827,#312e81);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:30px;box-shadow:var(--shadow)}.cta-band h2{font-size:34px;margin-bottom:8px}.cta-band p{color:rgba(255,255,255,.72);margin-bottom:0}.cta-band .btn{background:#fff;color:var(--brand);white-space:nowrap}
+.footer{padding:38px 0;color:var(--muted);font-size:13px;text-align:center;border-top:1px solid var(--line)}
+
+/* quiz */
+.quiz-head{position:sticky;top:0;z-index:20;background:rgba(247,248,252,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:17px 0}
+.quiz-head-row{display:flex;align-items:center;gap:16px}.quiz-home{border:0;background:#fff;border:1px solid var(--line);width:40px;height:40px;border-radius:12px;color:var(--muted)}
+.progress-wrap{flex:1}.progress-meta{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:8px}.progress{height:8px;border-radius:999px;background:#e9e7fb;overflow:hidden}.progress i{height:100%;display:block;width:0;background:linear-gradient(90deg,var(--brand),var(--brand-2));transition:width .3s ease}
+.quiz-main{padding:54px 0 70px}.qnum{font-weight:900;color:var(--brand);font-size:13px;letter-spacing:.08em}.qtitle{font-size:clamp(27px,5vw,38px);margin:8px 0 8px}.qhelp{color:var(--muted);font-size:14px;margin-bottom:26px}.options{display:grid;gap:11px}.opt{border:1.5px solid var(--line);background:#fff;border-radius:15px;padding:17px 18px;text-align:left;display:flex;align-items:center;gap:13px;color:var(--ink);font-weight:750;box-shadow:var(--shadow-sm);transition:.14s ease}.opt:hover,.opt:focus-visible{border-color:#b9b2ff;transform:translateY(-1px);outline:none}.opt.sel{border-color:var(--brand);background:var(--brand-soft);box-shadow:0 7px 18px rgba(91,77,245,.13)}.opt-dot{width:23px;height:23px;flex:0 0 23px;border-radius:50%;border:2px solid #d0d5dd;display:grid;place-items:center}.opt.sel .opt-dot{border-color:var(--brand);background:var(--brand)}.opt.sel .opt-dot::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff}.qnav{display:flex;justify-content:space-between;align-items:center;margin-top:20px}.save-note{font-size:12px;color:var(--muted)}
+
+/* results */
+.result-main{padding:54px 0 76px}.result-top{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.result-hero{padding:30px;background:linear-gradient(145deg,#111827,#312e81);color:#fff;border:none;position:relative;overflow:hidden}.result-hero::after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-90px;top:-110px;background:radial-gradient(circle,rgba(167,139,250,.55),transparent 70%)}.result-hero>*{position:relative;z-index:1}.result-kicker{font-size:12px;font-weight:900;color:#c4b5fd;letter-spacing:.09em}.result-name{font-size:clamp(31px,5vw,48px);margin:12px 0 8px}.result-tag{color:rgba(255,255,255,.75);font-size:15px}.result-desc{margin:24px 0 0;color:rgba(255,255,255,.86)}
+.readiness{padding:25px;display:grid;place-items:center;text-align:center}.ring{--value:70;width:154px;height:154px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--brand) calc(var(--value)*1%),#eceafd 0);position:relative}.ring::after{content:"";position:absolute;width:119px;height:119px;border-radius:50%;background:#fff}.ring-inner{position:relative;z-index:1}.ring strong{font-size:34px;display:block;line-height:1}.ring span{font-size:12px;color:var(--muted);font-weight:800}.ready-label{margin-top:17px;font-size:18px;font-weight:900}.ready-note{font-size:13px;color:var(--muted);margin-top:6px}
+.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.metric{padding:20px}.metric small{display:block;color:var(--muted);font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}.metric strong{display:block;font-size:18px;margin:8px 0 4px}.metric span{color:var(--muted);font-size:12px}
+.result-section{margin-top:54px}.section-title{font-size:29px;margin-bottom:7px}.section-sub{color:var(--muted);margin-bottom:20px}.road{display:grid;gap:12px}.week{display:grid;grid-template-columns:76px 1fr;gap:14px}.week-num{position:relative}.week-num b{display:grid;place-items:center;height:58px;border-radius:15px;background:var(--brand-soft);color:var(--brand);font-size:13px}.week:not(:last-child) .week-num::after{content:"";position:absolute;left:50%;top:63px;bottom:-13px;width:2px;background:var(--line)}.week-body{padding:19px}.week-phase{font-size:12px;color:var(--brand-2);font-weight:900}.week-body h3{font-size:18px;margin:5px 0 7px}.week-body p{color:var(--ink-2);font-size:14px;margin-bottom:11px}.output{display:inline-flex;padding:6px 9px;border-radius:9px;background:var(--mint-soft);color:#067647;font-size:12px;font-weight:850}.selection-tips{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.tip{padding:20px}.tip b{display:block;margin-bottom:7px}.tip span{font-size:13px;color:var(--muted)}
+.roles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.role{padding:20px}.role-icon{font-size:23px;margin-bottom:12px}.role b{display:block}.role span{font-size:12.5px;color:var(--muted)}
+
+/* form */
+.form-card{padding:28px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field.full{grid-column:1/-1}.field label,.field legend{display:block;font-size:13px;font-weight:850;color:var(--ink-2);margin-bottom:7px}.req{color:var(--coral)}.field input,.field textarea,.field select{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;background:#fff;color:var(--ink);transition:.14s}.field textarea{min-height:96px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px var(--brand-soft)}fieldset.field{border:0;padding:0;margin:0}.segment{display:flex;gap:8px}.segment button{flex:1;border:1.5px solid var(--line);background:#fff;color:var(--muted);padding:12px;border-radius:11px;font-weight:800}.segment button.on{border-color:var(--brand);background:var(--brand-soft);color:var(--brand)}.checks{display:flex;flex-wrap:wrap;gap:8px}.check-pill{position:relative}.check-pill input{position:absolute;opacity:0}.check-pill span{display:block;border:1px solid var(--line);border-radius:999px;padding:8px 11px;font-size:12px;font-weight:800;background:#fff;color:var(--muted)}.check-pill input:checked+span{border-color:var(--brand);background:var(--brand-soft);color:var(--brand)}.consent{display:flex;gap:9px;align-items:flex-start;color:var(--muted);font-size:12px}.consent input{margin-top:3px}.privacy-note{padding:14px;border-radius:12px;background:var(--blue-soft);color:#175cd3;font-size:12.5px;margin:4px 0 18px}
+.summary-wrap{display:none;margin-top:20px}.summary-wrap.show{display:block}.summary-card{padding:22px}.summary{white-space:pre-wrap;background:#101828;color:#e4e7ec;border-radius:14px;padding:18px;max-height:480px;overflow:auto;font:12.5px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px}.submit-panel{display:none;margin-top:12px;padding:14px;border:1px dashed #b9b2ff;border-radius:12px;background:var(--brand-soft);font-size:13px;color:var(--ink-2)}.submit-panel.show{display:block}
+.floating-cta{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:40;width:min(calc(100% - 28px),680px);display:none}.floating-cta.show{display:block}.floating-cta .btn{box-shadow:0 14px 35px rgba(91,77,245,.35)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,18px);padding:12px 17px;border-radius:11px;background:#101828;color:#fff;font-weight:750;font-size:13px;opacity:0;pointer-events:none;transition:.24s;z-index:100;box-shadow:var(--shadow)}.toast.show{opacity:1;transform:translate(-50%,0)}
+.resume{display:none;margin:0 0 18px;padding:12px 14px;border:1px solid #fedf89;border-radius:12px;background:var(--amber-soft);color:#93370d;font-size:13px}.resume.show{display:flex;align-items:center;justify-content:space-between;gap:12px}
+
+@media (max-width:900px){
+  .hero-grid,.result-top,.criteria{grid-template-columns:1fr}.preview{max-width:620px;transform:none}.grid-3,.stat-strip,.metric-grid,.selection-tips{grid-template-columns:1fr 1fr}.process,.roles{grid-template-columns:1fr 1fr}.cta-band{align-items:flex-start;flex-direction:column}.cta-band .btn{width:100%}
+}
+@media (max-width:620px){
+  .section{padding:58px 0}.hero{padding:46px 0 42px}.hero h1{font-size:39px}.hero-copy{font-size:17px}.hero-actions{display:grid}.hero-actions .btn{width:100%}.stat-strip,.grid-3,.fit-grid,.metric-grid,.selection-tips,.roles,.form-grid,.actions{grid-template-columns:1fr}.process{grid-template-columns:1fr 1fr}.cta-band{padding:28px}.cta-band h2{font-size:28px}.result-main{padding-top:32px}.result-hero,.readiness,.form-card{padding:22px}.week{grid-template-columns:60px 1fr}.week-num b{height:50px}.topbar .btn{display:none}.floating-cta.show{display:block}.summary-wrap{padding-bottom:78px}.segment{flex-direction:column}.preview{padding:13px}.preview-body{padding:16px}}
+@media print{
+  .topbar,.quiz-head,.floating-cta,.btn,.actions,.back-controls,.form-card,.footer,.toast{display:none!important}
+  body{background:#fff}.screen{display:none!important}#result.screen{display:block!important}.result-main{padding:0}.card{box-shadow:none}.result-section{break-inside:avoid}.summary-wrap{display:block!important}.summary{background:#fff;color:#000;border:1px solid #ccc;max-height:none}
+}
+</style>
+</head>
+<body>
+
+<section id="intro" class="screen active">
+  <header class="topbar">
+    <div class="wrap">
+      <div class="logo"><span class="logo-mark">30</span><span>AI 업무전환 실행권<small>Smartwork 30 Sprint</small></span></div>
+      <button class="btn small" onclick="startDiagnosis()">3분 진단 시작</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="pill">🌱 스마트워크톤 후속 실행 프로젝트</span>
+          <h1>오늘의 아이디어를<br><em>30일 안에 실제 업무 변화</em>로</h1>
+          <p class="hero-copy">우리 조직에 맞는 AI 전환 유형과 실행 준비도를 진단하고, 청년 AI 조교·AISH 멘토와 함께 완성할 맞춤 실행 로드맵을 받아보세요.</p>
+          <div id="resumeBox" class="resume"><span>이전에 작성하던 진단 내용이 있습니다.</span><button class="btn small secondary" onclick="resumeDiagnosis()">이어하기</button></div>
+          <div class="hero-actions">
+            <button class="btn" onclick="startDiagnosis()">우리 회사 AI 전환 진단하기 →</button>
+            <a class="btn secondary" href="#how">30일 과정 먼저 보기</a>
+          </div>
+          <div class="hero-meta">
+            <span>⏱ 약 3분</span><span>🔒 회원가입 없음</span><span>📄 맞춤 로드맵·신청서 즉시 생성</span>
+          </div>
+        </div>
+        <div class="preview card" aria-label="진단 결과 미리보기">
+          <div class="preview-top"><div class="preview-dots"><i></i><i></i><i></i></div><span class="preview-badge">RESULT PREVIEW</span></div>
+          <div class="preview-body">
+            <div class="preview-score"><div class="mini-ring"><span>76</span></div><div><small>AI 전환 실행 준비도</small><strong style="display:block;font-size:19px;margin-top:3px">30일 실험 적합형</strong></div></div>
+            <h3>마케팅 콘텐츠형</h3>
+            <p style="color:rgba(255,255,255,.72);font-size:13px">콘텐츠 템플릿과 반복 발행 흐름을 만드는 4주 스프린트</p>
+            <div class="preview-road"><div><b>1주</b><span>업무 1개로 범위 확정</span></div><div><b>2주</b><span>작동하는 초안 제작</span></div><div><b>3주</b><span>실제 업무 테스트</span></div><div><b>4주</b><span>성과 측정·매뉴얼 완성</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap stat-strip">
+      <div class="stat card"><strong>업무 1개</strong><span>30일 안에 끝낼 수 있게 범위를 좁힙니다.</span></div>
+      <div class="stat card"><strong>주 1회</strong><span>기업 담당자 피드백으로 현장 적용성을 높입니다.</span></div>
+      <div class="stat card"><strong>결과물 4종</strong><span>캔버스·초안·실사용 기록·성과 리포트</span></div>
+    </div>
+
+    <section class="section" id="how">
+      <div class="wrap">
+        <span class="eyebrow">How it works</span><h2>진단에서 실제 적용까지,<br>하나의 흐름으로 연결합니다</h2>
+        <p class="lead">단순한 AI 성향 테스트가 아니라, 행사 현장에서 신청 후보를 발굴하고 30일 실행으로 연결하기 위한 MVP입니다.</p>
+        <div class="process" style="margin-top:28px">
+          <div class="process-item card"><b>3분 진단</b><span>핵심 업무·현재 방식·소요시간·AI 경험을 확인합니다.</span></div>
+          <div class="process-item card"><b>맞춤 결과</b><span>전환 유형, 준비도, 우선 프로젝트와 성과지표를 제시합니다.</span></div>
+          <div class="process-item card"><b>신청서 생성</b><span>진단 답변을 재활용해 선정 심사용 신청 요약서를 만듭니다.</span></div>
+          <div class="process-item card"><b>30일 동행</b><span>정렬 → 제작 → 적용 → 증명의 4주 스프린트를 실행합니다.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tight" style="background:#fff">
+      <div class="wrap">
+        <span class="eyebrow">Why this works</span><h2>AI를 배우는 프로젝트가 아니라<br>업무가 바뀌는 프로젝트</h2>
+        <div class="grid-3" style="margin-top:28px">
+          <div class="feature card"><div class="feature-icon">🎯</div><h3>작게 시작</h3><p>거대한 시스템 대신 가장 반복적이고 측정 가능한 업무 1개만 선택합니다.</p></div>
+          <div class="feature card"><div class="feature-icon">🧑‍💻</div><h3>사람이 동행</h3><p>청년 AI 조교가 도구 적용과 문서화를 돕고, 멘토가 방향과 품질을 점검합니다.</p></div>
+          <div class="feature card"><div class="feature-icon">📈</div><h3>성과를 증명</h3><p>현재 소요시간을 기준선으로 남기고 30일 뒤 Before/After를 비교합니다.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap fit-grid">
+        <div class="fit-card card"><span class="pill" style="background:var(--mint-soft);color:#067647">✓ 잘 맞는 조직</span><ul><li>✓ 반복 업무에 주 4시간 이상 쓰는 곳</li><li>✓ 담당자가 주 1회 피드백할 수 있는 곳</li><li>✓ 30일 안에 결과물 하나를 만들고 싶은 곳</li><li>✓ AI를 처음 쓰거나, 개인 사용에서 팀 사용으로 넓히려는 곳</li></ul></div>
+        <div class="fit-card card"><span class="pill" style="background:var(--coral-soft);color:#b42318">범위를 먼저 조정해야 하는 경우</span><ul><li>• 전사 시스템 전체를 한 번에 바꾸려는 경우</li><li>• 담당자 참여 없이 외주처럼 맡기려는 경우</li><li>• 개인정보·영업기밀을 그대로 공개해야만 가능한 경우</li><li>• 30일 안에 확인할 성과 기준이 전혀 없는 경우</li></ul></div>
+      </div>
+    </section>
+
+    <section class="section tight" style="background:#fff">
+      <div class="wrap criteria">
+        <div><span class="eyebrow">Selection</span><h2>좋은 아이디어보다<br>실행 가능한 문제를 선정합니다</h2><p class="lead">70점 이상을 후보로 선정하고, 행사 후 D+3까지 담당자 참여 의사를 다시 확인합니다.</p></div>
+        <div class="criteria-list">
+          <div class="criterion"><b>문제 명확성</b><span>20</span></div><div class="criterion"><b>30일 실행 가능성</b><span>25</span></div><div class="criterion"><b>AI 활용 적합성</b><span>20</span></div><div class="criterion"><b>기업 참여 의지</b><span>15</span></div><div class="criterion"><b>확산 가능성</b><span>10</span></div><div class="criterion"><b>공익성</b><span>10</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section"><div class="wrap"><div class="cta-band"><div><h2>대회는 하루지만,<br>변화는 30일 동안 계속됩니다.</h2><p>지금 진단하면 우리 조직에 맞는 첫 AI 전환 프로젝트가 바로 나타납니다.</p></div><button class="btn" onclick="startDiagnosis()">3분 진단 시작하기 →</button></div></div></section>
+  </main>
+  <footer class="footer"><div class="wrap"><strong>30일 AI 업무전환 실행권 · Smartwork 30 Sprint</strong><br>청년 AI 조교와 함께 중소기업의 첫 AI 전환을 돕다 · AISH</div></footer>
+</section>
+
+<section id="quiz" class="screen">
+  <header class="quiz-head"><div class="narrow quiz-head-row"><button class="quiz-home" onclick="showScreen('intro')" aria-label="처음 화면으로">←</button><div class="progress-wrap"><div class="progress-meta"><span id="qcount">1 / 9</span><span>선택 내용은 자동 저장됩니다</span></div><div class="progress"><i id="progressBar"></i></div></div></div></header>
+  <main class="quiz-main"><div class="narrow"><div id="questionBox"></div><div class="qnav"><button id="prevBtn" class="btn ghost small" onclick="prevQuestion()">← 이전 질문</button><span class="save-note">개인정보는 아직 입력하지 않습니다</span></div></div></main>
+</section>
+
+<section id="result" class="screen">
+  <header class="topbar"><div class="wrap"><div class="logo"><span class="logo-mark">30</span><span>진단 결과<small>Smartwork 30 Sprint</small></span></div><button class="btn small secondary" onclick="restartAll()">다시 진단</button></div></header>
+  <main class="result-main"><div class="wrap">
+    <div class="result-top">
+      <section class="result-hero card"><div class="result-kicker">YOUR AI TRANSFORMATION TYPE</div><h1 class="result-name" id="resultName">문서 자동화형</h1><div class="result-tag" id="resultTag"></div><p class="result-desc" id="resultDesc"></p></section>
+      <aside class="readiness card"><div class="ring" id="readinessRing"><div class="ring-inner"><strong id="readinessScore">0</strong><span>실행 준비도</span></div></div><div class="ready-label" id="readinessLabel"></div><div class="ready-note" id="readinessNote"></div></aside>
+    </div>
+
+    <div class="metric-grid">
+      <div class="metric card"><small>현재 기준선</small><strong id="baselineMetric">-</strong><span>1주차에 실제 수치로 다시 기록</span></div>
+      <div class="metric card"><small>첫 프로젝트</small><strong id="firstProject">-</strong><span>업무 1개로 범위를 고정</span></div>
+      <div class="metric card"><small>핵심 성과지표</small><strong id="successMetric">-</strong><span>Before/After로 확인</span></div>
+    </div>
+
+    <section class="result-section"><h2 class="section-title">우리 조직 맞춤 30일 실행 로드맵</h2><p class="section-sub">정렬 → 제작 → 적용 → 증명. 각 주차의 산출물을 완성해야 다음 단계로 넘어갑니다.</p><div class="road" id="roadmapBox"></div></section>
+
+    <section class="result-section"><h2 class="section-title">선정 가능성을 높이는 세 가지</h2><p class="section-sub">진단 결과가 좋아도 아래 조건이 빠지면 실제 실행이 어렵습니다.</p><div class="selection-tips"><div class="tip card"><b>① 업무 1개로 좁히기</b><span>‘마케팅 전체’가 아니라 ‘주 2회 블로그 초안 작성’처럼 구체화합니다.</span></div><div class="tip card"><b>② 기준선 남기기</b><span>현재 소요시간·주기·오류 수를 기록해야 30일 뒤 성과를 증명할 수 있습니다.</span></div><div class="tip card"><b>③ 담당자 주 1회 참여</b><span>현장 피드백이 있어야 작동하는 초안이 실제 업무 프로세스로 바뀝니다.</span></div></div></section>
+
+    <section class="result-section"><h2 class="section-title">네 역할이 함께 움직입니다</h2><p class="section-sub">한 팀은 기업 담당자 + 참가팀 + 청년 AI 조교 + AISH 멘토로 구성됩니다.</p><div class="roles"><div class="role card"><div class="role-icon">🏢</div><b>기업 담당자</b><span>업무 문제·자료 제공, 주 1회 피드백</span></div><div class="role card"><div class="role-icon">🧩</div><b>참가팀</b><span>아이디어 구체화, 주차별 결과물 제작</span></div><div class="role card"><div class="role-icon">🧑‍💻</div><b>청년 AI 조교</b><span>도구 적용·문서화·체크인 진행</span></div><div class="role card"><div class="role-icon">🎓</div><b>AISH 멘토</b><span>문제 재정의·품질 점검·막힘 해결</span></div></div></section>
+
+    <section class="result-section" id="applySection">
+      <h2 class="section-title">30일 업무전환 실행권 신청서</h2><p class="section-sub">진단 답변을 바탕으로 심사에 필요한 정보를 보완합니다. 내부 개인정보나 영업기밀은 입력하지 마세요.</p>
+      <div class="form-card card">
+        <div class="privacy-note">🔒 이 HTML 파일 자체는 서버로 정보를 전송하지 않습니다. 아래에서 신청 요약서를 만든 뒤 복사·저장하거나, 운영진이 연결한 공식 신청 폼으로 제출하는 구조입니다.</div>
+        <div class="form-grid">
+          <div class="field"><label for="f_applicant">신청 구분 <span class="req">*</span></label><select id="f_applicant"><option value="">선택</option><option>기업</option><option>참가팀</option><option>운영진 추천</option><option>기타</option></select></div>
+          <div class="field"><label for="f_company">기업명 또는 팀명 <span class="req">*</span></label><input id="f_company" autocomplete="organization" placeholder="예: ○○상사 / AI해결팀" /></div>
+          <div class="field"><label for="f_name">담당자 이름 <span class="req">*</span></label><input id="f_name" autocomplete="name" placeholder="예: 홍길동" /></div>
+          <div class="field"><label for="f_phone">연락처 <span class="req">*</span></label><input id="f_phone" autocomplete="tel" inputmode="tel" placeholder="010-0000-0000" /></div>
+          <div class="field"><label for="f_email">이메일 <span class="req">*</span></label><input id="f_email" autocomplete="email" inputmode="email" type="email" placeholder="name@company.com" /></div>
+          <div class="field"><label for="f_industry">업종</label><input id="f_industry" placeholder="예: 교육·컨설팅" /></div>
+          <div class="field full"><label for="f_task">해결하려는 업무 문제 <span class="req">*</span></label><textarea id="f_task" placeholder="누가, 어떤 업무를, 얼마나 자주 수행하는지 포함해 업무 1개만 적어주세요."></textarea></div>
+          <div class="field full"><label for="f_current">현재 처리 방식·소요시간·주기 <span class="req">*</span></label><textarea id="f_current" placeholder="예: 담당자 1명이 매주 2회, 회당 3시간씩 수작업으로 블로그 초안을 작성합니다."></textarea></div>
+          <div class="field full"><label for="f_change">AI 적용 후 기대하는 변화 <span class="req">*</span></label><textarea id="f_change" placeholder="예: 초안 작성 시간을 회당 3시간에서 1시간 이내로 줄이고, 직원 누구나 같은 템플릿을 쓰게 합니다."></textarea></div>
+          <div class="field full"><label for="f_output">30일 안에 만들 최종 결과물 <span class="req">*</span></label><textarea id="f_output" placeholder="예: 블로그 프롬프트 세트, 샘플 콘텐츠 6건, 발행 체크리스트, 사용 매뉴얼"></textarea></div>
+          <fieldset class="field full"><legend>필요한 지원 (복수 선택)</legend><div class="checks" id="supportChecks"></div></fieldset>
+          <fieldset class="field full"><legend>기업·팀 담당자가 주 1회 이상 참여할 수 있나요? <span class="req">*</span></legend><div class="segment" id="seg_participation"><button type="button" data-value="예, 주 1회 이상 참여 가능">예, 참여 가능</button><button type="button" data-value="일정 조율 필요">일정 조율 필요</button><button type="button" data-value="참여 어려움">참여 어려움</button></div></fieldset>
+          <fieldset class="field full"><legend>좋은 결과가 나오면 스마트워크톤 사례로 공개할 수 있나요?</legend><div class="segment" id="seg_public"><button type="button" data-value="공개 가능">공개 가능</button><button type="button" data-value="익명 공개 가능">익명 공개 가능</button><button type="button" data-value="비공개 희망">비공개 희망</button></div></fieldset>
+          <label class="consent field full"><input type="checkbox" id="f_consent" /><span>신청 검토와 연락을 위해 위 정보를 운영진에게 전달하는 것에 동의합니다. <span class="req">*</span></span></label>
+        </div>
+        <button class="btn full" onclick="makeApplication()">진단 결과가 포함된 신청서 만들기 →</button>
+      </div>
+
+      <div class="summary-wrap" id="summaryWrap"><div class="summary-card card"><h3>신청 요약서가 완성되었습니다</h3><p class="muted" style="font-size:13px">운영진이 바로 검토할 수 있도록 진단 결과, 기준선, 참여 의지, 30일 산출물을 한 문서로 정리했습니다.</p><div class="summary" id="summaryText"></div><div class="actions"><button class="btn small" onclick="copyApplication()">📋 복사</button><button class="btn small secondary" onclick="downloadApplication()">⬇ TXT 저장</button><button class="btn small secondary" onclick="printApplication()">🖨 PDF 인쇄</button><button class="btn small secondary" onclick="sendApplication()">✉ 제출/메일</button></div><div class="submit-panel" id="submitPanel"></div></div></div>
+    </section>
+
+    <div class="back-controls" style="text-align:center;margin-top:34px"><button class="btn ghost" onclick="restartAll()">↺ 처음부터 다시 진단하기</button></div>
+  </div></main>
+  <footer class="footer"><div class="wrap"><strong>대회는 하루지만, 변화는 30일 동안 계속됩니다.</strong><br>후보 1차 발표 → D+3 유선 확인 → 30일 스프린트 → D+35 사례 공개</div></footer>
+  <div class="floating-cta" id="floatingCta"><button class="btn full" onclick="document.getElementById('applySection').scrollIntoView({behavior:'smooth'})">30일 실행권 신청서 작성하기 →</button></div>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* 운영 시 아래 두 값만 연결하세요.
+   applicationUrl: Google Form / Tally / 자체 신청 페이지 URL
+   operatorEmail : 운영진 접수 이메일 */
+const CONFIG = { applicationUrl:'', operatorEmail:'' };
+const STORAGE_KEY='smartwork30_diagnosis_v3';
+
+const QUESTIONS=[
+ {id:'applicant',q:'어떤 자격으로 진단하고 계신가요?',help:'신청서의 신청 구분에 자동 반영됩니다.',options:[{t:'기업 담당자',v:'기업'},{t:'스마트워크톤 참가팀',v:'참가팀'},{t:'운영진 또는 멘토',v:'운영진 추천'},{t:'기타',v:'기타'}]},
+ {id:'task',q:'가장 먼저 바꾸고 싶은 반복 업무는 무엇인가요?',help:'30일 동안 다룰 업무는 하나로 좁히는 것이 좋습니다.',options:[{t:'제안서·보고서·이메일 등 문서 작성',s:{doc:4}},{t:'블로그·SNS·상세페이지 등 홍보 콘텐츠',s:{marketing:4}},{t:'반복되는 고객 문의와 상담 응대',s:{support:4}},{t:'회의록·자료 요약·교육자료 제작',s:{doc:3,process:1}},{t:'데이터 정리·집계·정기 리포트',s:{process:4}},{t:'체크리스트·매뉴얼·업무 인수인계',s:{process:4}}]},
+ {id:'how',q:'현재 이 업무는 주로 어떻게 처리하나요?',help:'현재 방식은 자동화 난이도와 현장 적용 방법을 판단하는 단서가 됩니다.',options:[{t:'대표나 책임자가 직접 처리한다',tag:'핵심 인력의 시간이 소모됨',ready:12},{t:'직원이 반복적으로 수작업한다',tag:'반복 부담과 오류 가능성이 큼',ready:15},{t:'외주 또는 여러 도구에 나눠 맡긴다',tag:'비용·소통·품질 관리가 분산됨',ready:10},{t:'중요하지만 거의 하지 못하고 있다',tag:'업무 정의와 자료 정리부터 필요',ready:6}]},
+ {id:'frequency',q:'이 업무는 얼마나 자주 발생하나요?',help:'빈도가 높을수록 작은 개선도 누적 효과가 커집니다.',options:[{t:'월 1~2회',v:'월 1~2회',ready:5},{t:'주 1~2회',v:'주 1~2회',ready:10},{t:'주 3회 이상',v:'주 3회 이상',ready:14},{t:'거의 매일',v:'거의 매일',ready:16}]},
+ {id:'hours',q:'일주일에 이 업무에 쓰는 시간은 어느 정도인가요?',help:'이 수치는 30일 뒤 시간 절감률을 계산하는 기준선이 됩니다.',options:[{t:'1~3시간',v:'주 1~3시간',ready:7},{t:'4~7시간',v:'주 4~7시간',ready:12},{t:'8~15시간',v:'주 8~15시간',ready:16},{t:'15시간 이상',v:'주 15시간 이상',ready:18}]},
+ {id:'exp',q:'현재 AI를 어느 정도 활용하고 있나요?',help:'경험 수준에 따라 2주차 제작 난이도를 조정합니다.',options:[{t:'거의 사용해 본 적이 없다',level:0,ready:6},{t:'ChatGPT에 질문하는 정도다',level:1,ready:10},{t:'업무별 프롬프트를 조금 사용한다',level:2,ready:14},{t:'자동화나 팀 적용까지 해보고 싶다',level:3,ready:17}]},
+ {id:'goal',q:'30일 뒤 가장 확인하고 싶은 변화는 무엇인가요?',help:'선택한 목표가 진단 유형의 동점 기준과 핵심 성과지표가 됩니다.',options:[{t:'문서 초안 작성시간 단축',s:{doc:4},metric:'초안 작성시간'},{t:'콘텐츠 제작량과 발행 속도 향상',s:{marketing:4},metric:'제작시간·발행량'},{t:'고객 응답시간과 답변 일관성 개선',s:{support:4},metric:'응답시간·답변 일관성'},{t:'반복 업무의 오류와 인수인계 부담 감소',s:{process:4},metric:'처리시간·오류 수'},{t:'직원이 혼자 반복 사용할 매뉴얼 완성',s:{process:3,doc:1},metric:'독립 사용 가능 여부'}]},
+ {id:'participation',q:'담당자가 주 1회 이상 피드백에 참여할 수 있나요?',help:'실제 업무 적용을 위해 가장 중요한 선정 조건입니다.',options:[{t:'예, 주 1회 이상 참여할 수 있다',v:'예, 주 1회 이상 참여 가능',ready:20},{t:'일정 조율이 필요하지만 참여 의지가 있다',v:'일정 조율 필요',ready:12},{t:'현재는 정기 참여가 어렵다',v:'참여 어려움',ready:0}]},
+ {id:'industry',q:'조직의 업종을 알려주세요.',help:'결과 문구와 신청서에 반영됩니다.',options:[{t:'제조·생산'},{t:'유통·판매·이커머스'},{t:'외식·매장·생활서비스'},{t:'교육·컨설팅'},{t:'IT·스타트업'},{t:'공공·비영리'},{t:'기타'}]}
+];
+const TYPES={
+ doc:{name:'문서 자동화형',tag:'제안서·보고서·회의록·이메일 초안 자동화',desc:'반복적으로 작성하는 문서의 입력 항목과 품질 기준을 정리하고, 담당자가 다시 사용할 수 있는 프롬프트·템플릿·작성 절차를 만드는 유형입니다.',project:'반복 문서 1종 자동화',metric:'문서 초안 작성시간'},
+ marketing:{name:'마케팅 콘텐츠형',tag:'블로그·SNS·카드뉴스·상세페이지 제작',desc:'브랜드의 타깃·톤·핵심 메시지를 정리한 뒤, 콘텐츠 템플릿과 반복 발행 흐름을 만들어 제작 속도와 일관성을 높이는 유형입니다.',project:'핵심 채널 콘텐츠 제작 흐름',metric:'콘텐츠 제작시간·발행량'},
+ support:{name:'고객응대 개선형',tag:'FAQ·상담 스크립트·챗봇 시나리오',desc:'반복 문의를 유형별로 분류하고, 상황별 답변 기준과 스크립트를 만들어 응답 속도와 답변 품질을 안정시키는 유형입니다.',project:'반복 문의 FAQ·응대 스크립트',metric:'평균 응답시간·반복 문의 처리량'},
+ process:{name:'업무 프로세스 정리형',tag:'체크리스트·SOP·데이터 집계·자동화 설계',desc:'사람의 기억에 의존하는 반복 업무를 단계별로 분해하고, 체크리스트·표준 절차·자동화 후보를 정리해 담당자가 바뀌어도 운영되는 흐름을 만드는 유형입니다.',project:'반복 업무 1개의 표준 절차',metric:'처리시간·오류·인수인계 시간'}
+};
+const ROADMAPS={
+ doc:[['정렬','문서 1종을 선정하고 현재 작성 순서·입력자료·소요시간·검토 기준을 기록합니다.','문서 자동화 실행 캔버스'],['제작','입력 양식, 프롬프트, 표준 목차를 만들고 실제 자료로 초안 3건을 생성합니다.','프롬프트 세트 + 샘플 3건'],['적용','실제 업무 문서에 사용해 오류·누락·표현을 수정하고 담당자 혼자 쓰도록 정리합니다.','실사용 기록 + 사용 가이드'],['증명','Before/After 시간을 비교하고 최종 템플릿·품질 체크리스트를 확정합니다.','문서 자동화 매뉴얼 + 성과 리포트']],
+ marketing:[['정렬','핵심 채널 1개와 타깃·톤·키워드·발행 빈도를 확정하고 기존 제작시간을 기록합니다.','콘텐츠 전환 실행 캔버스'],['제작','콘텐츠 구조와 프롬프트를 만들고 블로그·SNS 등 실제 샘플을 3건 이상 제작합니다.','콘텐츠 템플릿 + 샘플 3건'],['적용','실제 채널에 발행하거나 내부 검수해 반응·수정시간·사용성을 확인합니다.','실발행 기록 + 제작 가이드'],['증명','제작시간과 발행량 변화를 비교하고 다음 달 콘텐츠 캘린더를 확정합니다.','콘텐츠 운영 매뉴얼 + 성과 리포트']],
+ support:[['정렬','최근 문의를 모아 유형·빈도·난이도를 분류하고 답변 톤과 금지사항을 정합니다.','고객응대 전환 실행 캔버스'],['제작','FAQ, 상담 스크립트, 답변 생성 프롬프트와 선택형 챗봇 시나리오를 만듭니다.','FAQ 세트 + 응대 스크립트'],['적용','실제 문의에 적용하고 잘못된 답변·누락·승인 필요 구간을 보완합니다.','실응대 기록 + 개선 스크립트'],['증명','응답시간과 답변 일관성을 비교하고 신규 담당자도 쓸 수 있는 기준을 확정합니다.','고객응대 매뉴얼 + 성과 리포트']],
+ process:[['정렬','반복 업무 1개를 단계별로 나누고 담당자·주기·소요시간·병목·보안 범위를 기록합니다.','프로세스 전환 실행 캔버스'],['제작','체크리스트·표준 양식·AI 적용 지점과 필요한 데이터 흐름을 설계합니다.','업무 체크리스트 + 자동화 초안'],['적용','실제 업무에 적용하며 누락·오류·예외 상황을 기록하고 절차를 수정합니다.','실행 기록 + 표준작업절차(SOP)'],['증명','처리시간·오류·인수인계 난이도를 비교하고 다음 자동화 범위를 정합니다.','업무 매뉴얼 + 성과 리포트']]
+};
+const SUPPORTS=['AI Tool 사용법','자동화 설계','문서화','콘텐츠 제작','데이터 정리','챗봇 제작','발표자료 정리'];
+const state={step:0,answers:{},result:null,summary:''};
+
+function $(id){return document.getElementById(id)}
+function showScreen(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');window.scrollTo({top:0,behavior:'auto'});if(id==='result')setTimeout(()=>$('floatingCta').classList.add('show'),500);else $('floatingCta').classList.remove('show')}
+function startDiagnosis(){state.step=0;state.answers={};saveState();showScreen('quiz');renderQuestion()}
+function resumeDiagnosis(){const saved=loadState();if(saved){Object.assign(state,saved);showScreen('quiz');renderQuestion()}else startDiagnosis()}
+function renderQuestion(){const q=QUESTIONS[state.step];$('qcount').textContent=`${state.step+1} / ${QUESTIONS.length}`;$('progressBar').style.width=`${state.step/QUESTIONS.length*100}%`;$('prevBtn').style.visibility=state.step===0?'hidden':'visible';let html=`<div class="qnum">QUESTION ${String(state.step+1).padStart(2,'0')}</div><h1 class="qtitle">${q.q}</h1><p class="qhelp">${q.help}</p><div class="options">`;q.options.forEach((o,i)=>{html+=`<button class="opt${state.answers[q.id]===i?' sel':''}" onclick="chooseOption(${i})"><span class="opt-dot"></span><span>${o.t}</span></button>`});$('questionBox').innerHTML=html+'</div>'}
+function chooseOption(i){const q=QUESTIONS[state.step];state.answers[q.id]=i;saveState();document.querySelectorAll('.opt').forEach((el,idx)=>el.classList.toggle('sel',idx===i));$('progressBar').style.width=`${(state.step+1)/QUESTIONS.length*100}%`;setTimeout(()=>{if(state.step<QUESTIONS.length-1){state.step++;renderQuestion()}else{calculateResult();renderResult();showScreen('result');clearSavedDiagnosis()}},180)}
+function prevQuestion(){if(state.step>0){state.step--;renderQuestion()}}
+function selected(id){const q=QUESTIONS.find(x=>x.id===id);return q?.options[state.answers[id]]||{}}
+
+function calculateResult(){
+ const scores={doc:0,marketing:0,support:0,process:0};
+ QUESTIONS.forEach(q=>{const o=q.options[state.answers[q.id]];if(o?.s)Object.entries(o.s).forEach(([k,v])=>scores[k]+=v)});
+ const goal=selected('goal');const goalPrimary=goal.s?Object.keys(goal.s).sort((a,b)=>goal.s[b]-goal.s[a])[0]:null;
+ let type=Object.keys(scores).sort((a,b)=>scores[b]-scores[a])[0];if(goalPrimary&&scores[goalPrimary]===scores[type])type=goalPrimary;
+ let ready=selected('how').ready+selected('frequency').ready+selected('hours').ready+selected('exp').ready+selected('participation').ready;
+ if(goalPrimary===type)ready+=10;ready=Math.min(100,ready);
+ let label,note;if(ready>=78){label='즉시 실행형';note='업무 기준선과 담당자 참여 조건이 좋아 바로 30일 실험을 시작하기 좋습니다.'}else if(ready>=58){label='30일 실험 적합형';note='범위를 업무 1개로 고정하면 충분히 실행 가능한 상태입니다.'}else{label='준비 정렬형';note='1주차에 담당자·자료·기준선을 먼저 정리하면 실행 가능성이 높아집니다.'}
+ state.result={type,ready,label,note,industry:selected('industry').t,applicant:selected('applicant').v,task:selected('task').t,how:selected('how').t,howTag:selected('how').tag,frequency:selected('frequency').v,hours:selected('hours').v,exp:selected('exp').level,goal:selected('goal').t,goalMetric:selected('goal').metric};
+}
+function renderResult(){const R=state.result,T=TYPES[R.type];$('resultName').textContent=T.name;$('resultTag').textContent=T.tag;$('resultDesc').textContent=`${R.industry} 분야의 현재 상황은 “${R.howTag}”에 가깝습니다. ${T.desc}`;$('readinessScore').textContent=R.ready;$('readinessRing').style.setProperty('--value',R.ready);$('readinessLabel').textContent=R.label;$('readinessNote').textContent=R.note;$('baselineMetric').textContent=`${R.frequency} · ${R.hours}`;$('firstProject').textContent=T.project;$('successMetric').textContent=R.goalMetric||T.metric;
+ $('roadmapBox').innerHTML=ROADMAPS[R.type].map((w,i)=>`<div class="week"><div class="week-num"><b>${i+1}주차</b></div><div class="week-body card"><div class="week-phase">${w[0]}</div><h3>${['문제와 범위 확정','작동하는 초안 제작','실제 업무에 적용','성과를 측정하고 증명'][i]}</h3><p>${w[1]}</p><span class="output">📦 ${w[2]}</span></div></div>`).join('');
+ buildSupports();prefillForm();bindSegments();restoreForm();
+}
+function buildSupports(){if($('supportChecks').children.length)return;$('supportChecks').innerHTML=SUPPORTS.map((x,i)=>`<label class="check-pill"><input type="checkbox" value="${x}" id="support_${i}"><span>${x}</span></label>`).join('')}
+function prefillForm(){const R=state.result;$('f_applicant').value=R.applicant||'';$('f_industry').value=R.industry==='기타'?'':R.industry;$('f_task').value=R.task;$('f_current').value=`${R.how}. ${R.frequency}, ${R.hours} 정도 소요됩니다.`;$('f_change').value=R.goal;$('f_output').value=ROADMAPS[R.type][3][2]}
+function bindSegments(){document.querySelectorAll('.segment').forEach(seg=>{seg.querySelectorAll('button').forEach(btn=>{btn.onclick=()=>{seg.querySelectorAll('button').forEach(x=>x.classList.remove('on'));btn.classList.add('on');seg.dataset.value=btn.dataset.value;saveForm()}})})}
+function restoreForm(){const p=selected('participation').v;if(p){const seg=$('seg_participation');seg.dataset.value=p;seg.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.value===p))}}
+function formValue(id){return $(id).value.trim()}
+function supportValues(){return [...document.querySelectorAll('#supportChecks input:checked')].map(x=>x.value)}
+function validateForm(){const ids=['f_applicant','f_company','f_name','f_phone','f_email','f_task','f_current','f_change','f_output'];for(const id of ids){if(!formValue(id)){toast('필수 항목을 모두 입력해 주세요');$(id).focus();return false}}if(!/^\S+@\S+\.\S+$/.test(formValue('f_email'))){toast('이메일 형식을 확인해 주세요');$('f_email').focus();return false}if(!$('seg_participation').dataset.value){toast('주 1회 참여 가능 여부를 선택해 주세요');return false}if(!$('f_consent').checked){toast('정보 전달 동의가 필요합니다');return false}return true}
+function makeApplication(){if(!validateForm())return;const R=state.result,T=TYPES[R.type],line='────────────────────────────────';const publicValue=$('seg_public').dataset.value||'미선택',supports=supportValues();state.summary=`■ 30일 AI 업무전환 실행권 신청서\n${line}\n[1. 신청 기본정보]\n· 신청 구분 : ${formValue('f_applicant')}\n· 기업/팀명 : ${formValue('f_company')}\n· 담당자    : ${formValue('f_name')}\n· 연락처    : ${formValue('f_phone')}\n· 이메일    : ${formValue('f_email')}\n· 업종      : ${formValue('f_industry')||R.industry}\n\n[2. AI 전환 진단 결과]\n· 전환 유형 : ${T.name}\n· 실행 준비도 : ${R.ready}점 / 100점 (${R.label})\n· 현재 기준선 : ${R.frequency}, ${R.hours}\n· 현재 방식 : ${R.how}\n· 목표 : ${R.goal}\n· 우선 성과지표 : ${R.goalMetric||T.metric}\n\n[3. 해결할 업무]\n· 업무 문제 : ${formValue('f_task')}\n· 현재 방식·주기·시간 : ${formValue('f_current')}\n· AI 적용 후 변화 : ${formValue('f_change')}\n· 30일 최종 결과물 : ${formValue('f_output')}\n· 필요한 지원 : ${supports.length?supports.join(', '):'미선택'}\n\n[4. 참여 및 공개 의사]\n· 주 1회 참여 : ${$('seg_participation').dataset.value}\n· 사례 공개 : ${publicValue}\n\n[5. 제안 30일 실행 로드맵]\n${ROADMAPS[R.type].map((w,i)=>`${i+1}주차 ${w[0]} | ${w[1]}\n   └ 산출물: ${w[2]}`).join('\n')}\n${line}\n선정 절차: 행사 당일 후보 발표 → D+3 유선 재확인 → 최종 선정\n선정 기준: 문제 명확성 20 / 실행 가능성 25 / AI 적합성 20 / 참여 의지 15 / 확산성 10 / 공익성 10\n\n“대회는 하루지만, 변화는 30일 동안 계속됩니다.”`;$('summaryText').textContent=state.summary;$('summaryWrap').classList.add('show');saveForm();$('summaryWrap').scrollIntoView({behavior:'smooth',block:'start'});toast('신청 요약서가 완성되었습니다')}
+function copyApplication(){navigator.clipboard?.writeText(state.summary).then(()=>toast('신청서를 복사했습니다')).catch(()=>fallbackCopy())}
+function fallbackCopy(){const ta=document.createElement('textarea');ta.value=state.summary;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();toast('신청서를 복사했습니다')}
+function downloadApplication(){const name=(formValue('f_company')||'신청')+'_30일_AI_업무전환_실행권.txt';const blob=new Blob([state.summary],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500);toast('TXT 신청서를 저장했습니다')}
+function printApplication(){window.print()}
+function sendApplication(){const panel=$('submitPanel');panel.classList.add('show');if(CONFIG.applicationUrl){panel.innerHTML=`공식 신청 폼이 새 창에서 열립니다. 진단 요약을 복사해 함께 제출해 주세요. <button class="btn small" style="margin-left:8px" onclick="window.open('${CONFIG.applicationUrl}','_blank','noopener')">공식 폼 열기</button>`}else if(CONFIG.operatorEmail){location.href=`mailto:${CONFIG.operatorEmail}?subject=${encodeURIComponent('[30일 AI 업무전환 실행권] '+formValue('f_company')+' 신청')}&body=${encodeURIComponent(state.summary)}`;panel.textContent='기본 메일 앱을 열었습니다.'}else{panel.innerHTML='아직 운영진 제출 주소가 연결되지 않았습니다. <b>복사</b> 또는 <b>TXT 저장</b> 후 카카오톡·이메일·Google Form으로 전달해 주세요. 개발자는 스크립트 상단의 CONFIG 값에 신청 URL 또는 이메일만 입력하면 됩니다.'}}
+function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify({step:state.step,answers:state.answers}))}
+function loadState(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))}catch{return null}}
+function clearSavedDiagnosis(){localStorage.removeItem(STORAGE_KEY)}
+function saveForm(){if(!state.result)return;const data={};document.querySelectorAll('.form-card input,.form-card textarea,.form-card select').forEach(el=>{if(el.type==='checkbox')data[el.id]=el.checked;else data[el.id]=el.value});data.participation=$('seg_participation').dataset.value||'';data.public=$('seg_public').dataset.value||'';localStorage.setItem(STORAGE_KEY+'_form',JSON.stringify(data))}
+function restartAll(){localStorage.removeItem(STORAGE_KEY);localStorage.removeItem(STORAGE_KEY+'_form');state.step=0;state.answers={};state.result=null;state.summary='';$('summaryWrap').classList.remove('show');showScreen('intro');checkResume()}
+function checkResume(){const saved=loadState();$('resumeBox').classList.toggle('show',!!saved&&Object.keys(saved.answers||{}).length>0)}
+let toastTimer;function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2300)}
+document.addEventListener('input',e=>{if(e.target.closest('.form-card'))saveForm()});document.addEventListener('change',e=>{if(e.target.closest('.form-card'))saveForm()});checkResume();
+</script>
+</body>
+</html>
