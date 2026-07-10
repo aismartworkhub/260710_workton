@@ -106,6 +106,87 @@
       background: #ffffff;
     }
 
+    .video-trigger {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 30;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 0 20px;
+      border: 0;
+      border-radius: 8px;
+      background: #1368ce;
+      box-shadow: 0 8px 22px rgb(19 104 206 / 32%);
+      color: #ffffff;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .video-trigger:hover { background: #0c5db8; }
+    .video-trigger:focus-visible { outline: 3px solid #7db7f5; outline-offset: 3px; }
+
+    .play-icon {
+      width: 0;
+      height: 0;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 9px solid currentColor;
+    }
+
+    .video-dialog {
+      width: min(960px, calc(100vw - 32px));
+      max-width: none;
+      padding: 0;
+      border: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #0b0d10;
+      box-shadow: 0 24px 70px rgb(0 0 0 / 45%);
+    }
+
+    .video-dialog::backdrop { background: rgb(0 0 0 / 72%); }
+
+    .video-dialog-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 52px;
+      padding: 0 12px 0 18px;
+      background: #ffffff;
+    }
+
+    .video-dialog-title { margin: 0; font-size: 16px; }
+
+    .video-close {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: #2f3944;
+      font-size: 27px;
+      line-height: 1;
+      place-items: center;
+      cursor: pointer;
+    }
+
+    .video-close:hover { background: #eef1f4; }
+
+    .video-player {
+      display: block;
+      width: 100%;
+      max-height: calc(100vh - 110px);
+      aspect-ratio: 16 / 9;
+      background: #000000;
+    }
+
     @media (max-width: 760px) {
       .header-inner {
         display: block;
@@ -117,6 +198,7 @@
       .tabs { height: 46px; padding: 0 8px; }
       .tab { min-height: 46px; padding: 0 12px; font-size: 13px; }
       .tab::after { right: 12px; left: 12px; }
+      .video-trigger { right: 16px; bottom: 16px; min-height: 44px; padding: 0 16px; }
     }
   </style>
 </head>
@@ -136,9 +218,29 @@
     <iframe id="content-frame" name="content-frame" src="proposal.html" title="제안서도우미" loading="eager"></iframe>
   </main>
 
+  <button class="video-trigger" id="video-trigger" type="button" aria-haspopup="dialog">
+    <span class="play-icon" aria-hidden="true"></span>
+    영상보기
+  </button>
+
+  <dialog class="video-dialog" id="video-dialog" aria-labelledby="video-title">
+    <div class="video-dialog-header">
+      <h2 class="video-dialog-title" id="video-title">영상보기</h2>
+      <button class="video-close" id="video-close" type="button" aria-label="영상 닫기">&times;</button>
+    </div>
+    <video class="video-player" id="video-player" controls playsinline preload="metadata">
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3EMOHy5MCKva1uxqxghVVcqU6Dl/hf_20260710_045911_e75c6b6d-01e3-45b5-95a6-ff60c4047a3a.mp4" type="video/mp4">
+      브라우저가 동영상 재생을 지원하지 않습니다.
+    </video>
+  </dialog>
+
   <script>
     const tabs = [...document.querySelectorAll('.tab')];
     const frame = document.getElementById('content-frame');
+    const videoTrigger = document.getElementById('video-trigger');
+    const videoDialog = document.getElementById('video-dialog');
+    const videoClose = document.getElementById('video-close');
+    const videoPlayer = document.getElementById('video-player');
 
     function selectTab(tab) {
       tabs.forEach((item) => {
@@ -166,6 +268,16 @@
         selectTab(tabs[nextIndex]);
         tabs[nextIndex].focus();
       });
+    });
+
+    videoTrigger.addEventListener('click', () => videoDialog.showModal());
+    videoClose.addEventListener('click', () => videoDialog.close());
+    videoDialog.addEventListener('click', (event) => {
+      if (event.target === videoDialog) videoDialog.close();
+    });
+    videoDialog.addEventListener('close', () => {
+      videoPlayer.pause();
+      videoPlayer.currentTime = 0;
     });
   </script>
 </body>
