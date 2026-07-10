@@ -163,7 +163,7 @@
   .divider{height:1px;background:var(--line);margin:30px 0}
   .backhint{text-align:center;margin-top:6px}
 
-  @media (min-width:560px){ .hero h1{font-size:30px} .qtitle{font-size:26px} }
+  @media (min-width:560px){ .hero h1{font-size:34px} .qtitle{font-size:26px} }
 </style>
 </head>
 <body>
@@ -245,7 +245,7 @@
     <h2 class="sec" id="applyHead">30일 동행 프로젝트 신청하기</h2>
     <p class="secsub">아래 내용을 확인·보완하면, 진단 결과와 함께 신청 요약서가 만들어집니다.</p>
     <div class="card">
-      <div class="field"><label>기업명 <span class="req">*</span></label><input id="f_company" placeholder="예: AISH유통" /></div>
+      <div class="field"><label>기업명 <span class="req">*</span></label><input id="f_company" placeholder="예: 라임프렌즈" /></div>
       <div class="field"><label>담당자명 <span class="req">*</span></label><input id="f_name" placeholder="예: 홍길동" /></div>
       <div class="field"><label>연락처 <span class="req">*</span></label><input id="f_contact" placeholder="휴대폰 또는 이메일" /></div>
       <div class="field"><label>업종</label><input id="f_industry" placeholder="예: 유통·이커머스" /></div>
@@ -262,15 +262,14 @@
     <!-- summary output -->
     <div id="summaryWrap" style="display:none">
       <h2 class="sec">신청 요약서</h2>
-      <p class="secsub">아래 요약을 복사하거나 내려받아, 카카오톡·이메일·구글폼 등으로 운영진에게 보내주세요.</p>
+      <p class="secsub">아래 내용을 확인한 후 신청하기를 누르면 운영진에게 바로 접수됩니다.</p>
       <div class="summary" id="summaryText"></div>
       <div class="actions">
         <button class="btn small" style="width:100%" onclick="copySummary()">📋 복사하기</button>
         <button class="btn small secondary" style="width:100%" onclick="downloadSummary()">⬇️ 다운로드</button>
       </div>
       <div class="actions">
-        <button class="btn small secondary" style="width:100%" onclick="mailSummary()">✉️ 이메일로 보내기</button>
-        <button class="btn small secondary" style="width:100%" onclick="shareSummary()">🔗 공유</button>
+        <button class="btn small" id="submitApplicationBtn" style="width:100%;grid-column:1/-1" onclick="submitApplication()">신청하기</button>
       </div>
       <p class="secsub" style="text-align:center;margin-top:14px">보내주신 신청서는 심사(70점 이상 선정) 후 D+3 이내에 유선으로 연락드립니다.</p>
     </div>
@@ -529,18 +528,53 @@ function downloadSummary(){
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=fn;a.click();URL.revokeObjectURL(a.href);
   toast('신청서를 내려받았어요');
 }
-function mailSummary(){
-  const subj=encodeURIComponent('[30일 AI 업무전환 실행권] '+(document.getElementById('f_company').value.trim()||'')+' 신청');
-  const body=encodeURIComponent(window.SUMMARY||'');
-  location.href='mailto:?subject='+subj+'&body='+body;
-}
-function shareSummary(){
-  if(navigator.share){ navigator.share({title:'30일 AI 업무전환 실행권 신청', text:window.SUMMARY||''}).catch(()=>{}); }
-  else copySummary();
-}
+async function submitApplication(){
+  const endpoint='https://script.google.com/macros/s/AKfycbzapEh0E1_fyhTGsPWSYmUWnSdlYpfB7Gt78K7zVCjzlPoo7kRZnRdNvwkREYxKTjoiUw/exec';
+  const button=document.getElementById('submitApplicationBtn');
+  const value=id=>document.getElementById(id).value.trim();
 
+  if(!window.SUMMARY){ toast('먼저 신청 요약서를 만들어주세요'); return; }
+  if(button.disabled) return;
+
+  const R=window.RESULT||{};
+  const payload={
+    company:value('f_company'),
+    name:value('f_name'),
+    contact:value('f_contact'),
+    industry:value('f_industry')||R.industry||'',
+    task:value('f_task')||R.task||'',
+    pain:value('f_pain'),
+    goal:value('f_goal')||R.goal||'',
+    join:document.getElementById('seg_join').dataset.val||'',
+    open:document.getElementById('seg_open').dataset.val||'',
+    resultType:R.typeName||R.type||'',
+    summary:window.SUMMARY
+  };
+
+  button.disabled=true;
+  button.textContent='신청 중...';
+
+  try{
+    await fetch(endpoint,{
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify(payload)
+    });
+    button.textContent='신청 완료';
+    toast('신청이 접수되었습니다');
+  }catch(error){
+    button.disabled=false;
+    button.textContent='다시 신청하기';
+    toast('신청 중 오류가 발생했습니다. 다시 시도해주세요');
+  }
+}
 function restart(){ step=0; for(const k in answers) delete answers[k];
   document.getElementById('summaryWrap').style.display='none';
+  const submitButton=document.getElementById('submitApplicationBtn');
+  submitButton.disabled=false;
+  submitButton.textContent='신청하기';
+  window.SUMMARY='';
   ['f_company','f_name','f_contact','f_industry','f_task','f_pain','f_goal'].forEach(id=>document.getElementById(id).value='');
   document.querySelectorAll('.seg button').forEach(b=>b.classList.remove('on'));
   document.querySelectorAll('.seg').forEach(s=>delete s.dataset.val);
