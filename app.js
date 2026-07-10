@@ -361,6 +361,71 @@ function getProposalPages(templateKey, pageCount, targetDestination) {
 }
 
 const deliverables = {
+    "aish": {
+        get proposal() {
+            return getProposalPages("aish", selectedPageCount, selectedSubmissionTarget);
+        },
+        summary: {
+            title: "AISH 스마트워크톤 지속가능 성장 전략 수립",
+            org: "AI SmartWork Hub (AISH) 운영위원회",
+            goal: "참가비 30만 원 진입 장벽을 유지하면서도 재정적 자립을 이룰 수 있도록 B2B 기업 후원금 및 B2G RISE 사업비를 연계한 이중 엔진 수익 구조 확립.",
+            budget: "총 2,700만 원 (B2B 스폰서십 1,500만 원 + B2G 지자체 및 대학 매칭 예산 1,200만 원. B2C 참가비는 예비 재원으로 축적)",
+            effects: "1. G-Valley 영세 SME의 실질적 AX 자동화 프로토타입 보급 (연 15개사 이상)\n2. 지역 대학생 및 청년 대상 AI-DX 튜터 일자리 매칭 및 취업 연계\n3. 2027년 전국 10대 산업단지로의 AISH 테크 센터 프랜차이즈 확산",
+            svg: `<svg viewBox="0 0 400 180" width="100%" height="100%">
+                    <rect width="400" height="180" fill="#f8fafc" rx="8"/>
+                    <!-- Nodes -->
+                    <circle cx="65" cy="85" r="25" fill="#3b82f6" opacity="0.1"/>
+                    <circle cx="65" cy="85" r="25" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+                    <text x="65" y="89" fill="#2563eb" font-size="10" font-weight="700" text-anchor="middle">SME</text>
+                    
+                    <circle cx="200" cy="35" r="25" fill="#7c3aed" opacity="0.1"/>
+                    <circle cx="200" cy="35" r="25" fill="none" stroke="#7c3aed" stroke-width="1.5"/>
+                    <text x="200" y="39" fill="#7c3aed" font-size="10" font-weight="700" text-anchor="middle">AISH Tutor</text>
+
+                    <circle cx="200" cy="135" r="25" fill="#059669" opacity="0.1"/>
+                    <circle cx="200" cy="135" r="25" fill="none" stroke="#059669" stroke-width="1.5"/>
+                    <text x="200" y="139" fill="#059669" font-size="10" font-weight="700" text-anchor="middle">Youth TAs</text>
+
+                    <circle cx="335" cy="85" r="25" fill="#b45309" opacity="0.1"/>
+                    <circle cx="335" cy="85" r="25" fill="none" stroke="#b45309" stroke-width="1.5"/>
+                    <text x="335" y="89" fill="#b45309" font-size="10" font-weight="700" text-anchor="middle">B2B/B2G</text>
+                    
+                    <!-- Paths -->
+                    <path d="M 90 85 L 175 35" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3" fill="none"/>
+                    <path d="M 90 85 L 175 135" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3" fill="none"/>
+                    <path d="M 225 35 L 310 85" stroke="#2563eb" stroke-width="1.5" fill="none"/>
+                    <path d="M 225 135 L 310 85" stroke="#2563eb" stroke-width="1.5" fill="none"/>
+                  </svg>`
+        },
+        video: {
+            basic: `### 🎬 기본형 (Gemini/GPT 이미지 스틸컷 연동 모델)
+* **제작 방식**: 무료 크레딧을 이용해 스틸컷 4장을 생성하여 CapCut에서 자연스러운 페이드 트랜지션으로 렌더링.
+#### [Scene 1: 도입부 (00:00 - 00:10)]
+- **Gemini 이미지 프롬프트**: \`A cinematic high-quality photo of a digital tablet showing financial line graphs and business charts, G-Valley sunset background, realistic, 4k.\`
+- **나레이션**: "AI 시대, 수많은 중소기업이 디지털 전환의 한계에 부딪히고 있습니다. 단순한 교육을 넘어 실질적인 해답을 찾을 곳은 어디일까요?"
+#### [Scene 2: 핵심 문제 제시 (00:10 - 00:25)]
+- **Gemini 이미지 프롬프트**: \`A high-quality photo of a middle-aged Asian CEO smiling and working with two young university students in a clean high-tech G-Valley office, showing teamwork, realistic.\`
+- **나레이션**: "여기, G-Valley의 13년 노하우와 누적 수백 명의 CEO 네트워크가 결합된 AISH 스마트워크톤이 있습니다. 참가비 30만 원을 유지하면서도 지역 청년들과 협력하여 기업의 문제를 현장에서 즉시 해결합니다."`,
+            premium: {
+                higgsfield: `### 🎬 고급형 힉스필드 API 연동 (캐릭터/모션 강점)
+* **제작 방식**: 캐릭터의 물리적 역동성과 대화 제스처에 특화된 Higgsfield API에 비디오 모션 프롬프트를 다이렉트 전송.
+#### [Scene 1: 도입부 (00:00 - 00:10)]
+- **Higgsfield 비디오 프롬프트**: \`A fluid 4s abstract video showing glowing data nodes merging into a beautiful spinning crystal orb, volumetric lighting, realistic fluid motions.\`
+- **나레이션**: "AI 시대, 수많은 중소기업이 디지털 전환의 한계에 부딪히고 있습니다. 단순한 교육을 넘어 실질적인 해답을 찾을 곳은 어디일까요?"
+#### [Scene 2: 핵심 문제 제시 (00:10 - 00:25)]
+- **Higgsfield 비디오 프롬프트**: \`A 4s video of two tech founders talking in front of a giant digital screen displaying server grids, pointing and gesturing naturally.\`
+- **나레이션**: "여기, G-Valley의 13년 노하우와 누적 수백 명의 CEO 네트워크가 결합된 AISH 스마트워크톤이 있습니다. 참가비 30만 원을 유지하면서도 지역 청년들과 협력하여 기업의 문제를 현장에서 즉시 해결합니다."`,
+                runway: `### 🎬 고급형 런웨이 Gen-3 API 연동 (시네마틱/배경 강점)
+* **제작 방식**: 시네마틱 카메라 움직임과 배경 일관성에 강점이 있는 Runway Gen-3 API에 비디오 프롬프트를 다이렉트 전송.
+#### [Scene 1: 도입부 (00:00 - 00:10)]
+- **Runway Gen-3 비디오 프롬프트**: \`Cinematic macro shot of abstract digital blocks glowing with neon purple data streams compiling, smooth slow camera zoom, 4k.\`
+- **나레이션**: "AI 시대, 수많은 중소기업이 디지털 전환의 한계에 부딪히고 있습니다. 단순한 교육을 넘어 실질적인 해답을 찾을 곳은 어디일까요?"
+#### [Scene 2: 핵심 문제 제시 (00:10 - 00:25)]
+- **Runway Gen-3 비디오 프롬프트**: \`Volumetric god rays, slow tracking shot of startup founders walking through a clean high-tech server hall, smiling the screen, epic look.\`
+- **나레이션**: "여기, G-Valley의 13년 노하우와 누적 수백 명의 CEO 네트워크가 결합된 AISH 스마트워크톤이 있습니다. 참가비 30만 원을 유지하면서도 지역 청년들과 협력하여 기업의 문제를 현장에서 즉시 해결합니다."`
+            }
+        }
+    },
     "gov_grant": {
         get proposal() {
             return getProposalPages("gov_grant", selectedPageCount, selectedSubmissionTarget);
@@ -777,7 +842,7 @@ const selfEvaluationState = {
 // Initialize app when DOM loaded
 document.addEventListener("DOMContentLoaded", () => {
     // UI elements
-    const selectEl = document.getElementById("project-template-selector");
+    //const selectEl = document.getElementById("project-template-selector");
     const bgInput = document.getElementById("input-background");
     const constraintInput = document.getElementById("input-constraints");
     const reqInput = document.getElementById("input-requirements");
@@ -874,7 +939,13 @@ document.addEventListener("DOMContentLoaded", () => {
     dropzone.addEventListener("click", () => fileInput.click());
     fileInput.addEventListener("change", (e) => {
         if (e.target.files.length > 0) {
-            handleUploadedFile(e.target.files[0].name);
+            const file = e.target.files[0];
+            const nameLower = file.name.toLowerCase();
+            if (nameLower.endsWith(".pdf") || nameLower.endsWith(".doc") || nameLower.endsWith(".docx") || nameLower.endsWith(".hwp") || nameLower.endsWith(".hwpx") || nameLower.endsWith(".pptx")) {
+                handleUploadedFile(file.name);
+            } else {
+                alert("정부 공문 매칭을 위해 PDF, DOC, HWP, HWPX, PPTX 확장자 파일만 업로드 가능합니다.");
+            }
         }
     });
     
@@ -892,10 +963,11 @@ document.addEventListener("DOMContentLoaded", () => {
         dropzone.classList.remove("dragover");
         if (e.dataTransfer.files.length > 0) {
             const file = e.dataTransfer.files[0];
-            if (file.name.endsWith(".pdf") || file.name.endsWith(".doc") || file.name.endsWith(".docx")) {
+            const nameLower = file.name.toLowerCase();
+            if (nameLower.endsWith(".pdf") || nameLower.endsWith(".doc") || nameLower.endsWith(".docx") || nameLower.endsWith(".hwp") || nameLower.endsWith(".hwpx") || nameLower.endsWith(".pptx")) {
                 handleUploadedFile(file.name);
             } else {
-                alert("정부 공문 매칭을 위해 PDF 또는 DOC 확장자 파일만 업로드 가능합니다.");
+                alert("정부 공문 매칭을 위해 PDF, DOC, HWP, HWPX, PPTX 확장자 파일만 업로드 가능합니다.");
             }
         }
     });
@@ -935,24 +1007,46 @@ document.addEventListener("DOMContentLoaded", () => {
 // File upload parser simulator (restrict to pdf/doc)
 function handleUploadedFile(filename) {
     const statusText = document.getElementById("upload-status-text");
-    statusText.innerText = `공문 분석 완료: ${filename}`;
-    
     const monitor = document.getElementById("monitor-log-area");
-    monitor.innerHTML += `<div style="color: var(--primary);">[RFP Parser] Layout-aware parsing on "${filename}" completed. Markdown conversion success.</div>`;
+    const dropzone = document.getElementById("dropzone");
     
-    // Autoselect template based on keywords
-    if (filename.toLowerCase().includes("voucher") || filename.toLowerCase().includes("바우처") || filename.toLowerCase().includes("nipa") || filename.toLowerCase().includes("정부")) {
-        document.getElementById("project-template-selector").value = "gov_grant";
-        currentTemplateKey = "gov_grant";
-    } else if (filename.toLowerCase().includes("ir") || filename.toLowerCase().includes("startup") || filename.toLowerCase().includes("투자")) {
-        document.getElementById("project-template-selector").value = "startup_pitch";
-        currentTemplateKey = "startup_pitch";
-    }
+    if (dropzone) dropzone.style.pointerEvents = "none";
     
-    currentSlideIndex = 0;
-    currentProposalPage = 0;
-    loadTemplate(currentTemplateKey);
-    resetAgentStates();
+    let progress = 0;
+    statusText.innerText = `공문 분석 준비 중...`;
+    
+    const interval = setInterval(() => {
+        progress += 20;
+        if (progress === 20) {
+            statusText.innerText = `[1/3] 레이아웃 및 텍스트 블록 추출 중 (${progress}%)`;
+            monitor.innerHTML += `<div style="color: var(--text-secondary);">[RFP Parser] Extracting layout elements from "${filename}"...</div>`;
+        } else if (progress === 40) {
+            statusText.innerText = `[2/3] 공공 RFP 핵심 키워드 매핑 및 분류 중 (${progress}%)`;
+            monitor.innerHTML += `<div style="color: var(--text-secondary);">[RFP Parser] Parsing RFP constraints and eligibility checklist...</div>`;
+        } else if (progress === 80) {
+            statusText.innerText = `[3/3] AI 에이전트 지침 및 프롬프트 주입 중 (${progress}%)`;
+            monitor.innerHTML += `<div style="color: var(--primary);">[RFP Parser] Matching targets to SME AI transition requirements...</div>`;
+        } else if (progress >= 100) {
+            clearInterval(interval);
+            statusText.innerText = `공문 분석 완료: ${filename}`;
+            monitor.innerHTML += `<div style="color: var(--accent-green); font-weight:600;">[RFP Parser] Successfully populated DX workspace context!</div>`;
+            if (dropzone) dropzone.style.pointerEvents = "auto";
+            
+            // Populate inputs with rich extracted contents
+            document.getElementById("input-background").value = `[RFP 분석 정보] 파일명: ${filename}\n- 공공 지원 사업: 중소기업 AI 스마트워크 고도화 및 DX 바우처 지원 사업\n- 제안 타깃: G-Valley 중소벤처기업 및 소상공인 업무 효율화 실증\n- 주요 내용: 산학협력 인프라 및 전용 에이전트 협업 체계를 통한 기업별 맞춤형 AI 대시보드 구축과 보급 전략 수립.`;
+            
+            document.getElementById("input-constraints").value = `- 사업 수행 기간: 총 6개월 이내 실증 완료 필수 (TRL 6~7단계 시제품 이상)\n- 정부 지원 예산: 과제당 최대 5,000만 원 한도 (기업 자부담 비율 20% 의무 수록)\n- 필수 스펙: 정부 제출 표준 양식(화이트 무지 배경, 얇은 격자 없는 선 굵기 규격화)을 적용한 1페이지 요약서 구성.`;
+            
+            document.getElementById("input-requirements").value = `1. 대상 기업 업무 환경의 수작업 프로세스 병목 구간 정량화 분석\n2. AI 오케스트레이터 및 ElevenLabs 음성 프로필 연동을 통한 자동화 워크플로우 실증\n3. Google Vids 비디오 스토리보드 기획 및 NotebookLM 전용 텍스트 리소스 가이드 완성`;
+            
+            currentSlideIndex = 0;
+            currentProposalPage = 0;
+            
+            // Re-render only to reflect new context in dynamic pages
+            renderContent();
+        }
+        monitor.scrollTop = monitor.scrollHeight;
+    }, 400);
 }
 
 // Load values from template key
