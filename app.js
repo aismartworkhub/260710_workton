@@ -1820,7 +1820,7 @@ function renderProposalBuilder() {
                 <button class="btn-page-generate" style="background:#1e293b; display:inline-flex; align-items:center; gap:6px; padding: 6px 12px; font-size:11px;" onclick="downloadNotebookLMSource()">
                     📥 리소스 다운로드 (.md)
                 </button>
-                <a href="https://notebooklm.google.com/notebook/creating" target="_blank" class="btn-page-generate" style="background:#0f172a; text-decoration:none; display:inline-flex; align-items:center; gap:6px; padding: 6px 12px; font-size:11px; color:white; font-weight:700;">
+                <a href="https://notebooklm.google.com/notebook/" target="_blank" class="btn-page-generate" style="background:#0f172a; text-decoration:none; display:inline-flex; align-items:center; gap:6px; padding: 6px 12px; font-size:11px; color:white; font-weight:700;">
                     🔗 Google NotebookLM 열기
                 </a>
             </div>
