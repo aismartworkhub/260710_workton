@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AP-Hub: Advanced Multi-Agent AI Strategy Coordinator and Proposal Builder Dashboard. Customize templates, input API keys, run fuzzy constraints agent loops, and export government-compliant deliverables.">
+    <title>Agentic Proposal Hub (AP-Hub) - SOTA Enterprise Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Chart.js for live data rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation Bar & Document Loader -->
+        <header class="glass-panel">
+            <div class="brand-section">
+                <h1 class="brand-title" id="main-app-title">Agentic Proposal Hub (AP-Hub)</h1>
+                <p class="brand-tagline">SOTA AI Agent Team Coordinator & Page-by-Page Proposal Builder</p>
+            </div>
+            
+            <!-- Document Loader Dropzone (PDF, DOC only) -->
+            <div class="document-loader-zone">
+                <div id="dropzone" class="dropzone-area">
+                    <span class="upload-icon">📄</span>
+                    <div class="upload-text">
+                        <strong id="upload-status-text">정부 사업 공문 / 양식 (.pdf, .doc) 업로드</strong>
+                        <span>이곳에 파일을 드롭하여 학습시키세요</span>
+                    </div>
+                    <input type="file" id="file-input" style="display: none;" accept=".pdf,.doc,.docx">
+                </div>
+            </div>
+
+        </header>
+
+        <!-- Main Workspace Grid -->
+        <div class="dashboard-grid">
+            <!-- Sidebar Panel: Inputs, API Keys, Advanced Options and Configurations -->
+            <aside class="glass-panel config-sidebar">
+                <h2 class="section-title">📂 프로젝트 매개변수 설정</h2>
+                
+                <!-- Dynamic Proposal Size & Submission Target -->
+                <div style="background: rgba(0,0,0,0.01); padding: 8px; border-radius: 8px; border: 1px dashed var(--border-color); margin-bottom: 12px;">
+                    <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                        <div style="flex: 1;">
+                            <label for="select-page-count" style="font-size: 11px; font-weight: 700;">페이지수 설정</label>
+                            <select id="select-page-count" class="dropdown" style="padding: 6px; font-size: 11px; height: 32px; width: 100%;">
+                                <option value="10" selected>10 페이지 (기본값)</option>
+                                <option value="custom">직접 입력 (숫자 넣기)</option>
+                                <option value="outline">목차에 맞춰서</option>
+                                <option value="optimized">최적화</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="select-submission-target" style="font-size: 11px; font-weight: 700;">제출처 (Submission)</label>
+                            <select id="select-submission-target" class="dropdown" style="padding: 6px; font-size: 11px; height: 32px; width: 100%;">
+                                <option value="중소벤처기업부">중소벤처기업부 (MSS)</option>
+                                <option value="정보통신산업진흥원" selected>정보통신산업진흥원 (NIPA)</option>
+                                <option value="서울경제진흥원">서울경제진흥원 (SBA)</option>
+                                <option value="창업진흥원">창업진흥원 (KISED)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="custom-page-input-container" style="display: none; border-top: 1px solid var(--border-color); padding-top: 8px;">
+                        <label for="input-custom-page-count" style="font-size: 10px; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 4px;">페이지 수 직접 입력 (1 ~ 15)</label>
+                        <input type="number" id="input-custom-page-count" value="10" min="1" max="15" style="padding: 4px 8px; font-size: 11px; width: 100%; height: 28px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary);" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="input-background">프로젝트 배경 (Background)</label>
+                    <textarea id="input-background" placeholder="프로젝트 배경 설명..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="input-constraints">핵심 제약조건 (Constraints)</label>
+                    <textarea id="input-constraints" placeholder="참가비, 인력 고용 등 필수 제약사항..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="input-requirements">요구사항 (Requirements)</label>
+                    <textarea id="input-requirements" placeholder="산출될 주요 전략 및 요구 분석 항목..."></textarea>
+                </div>
+
+                <!-- Advanced Writing Options -->
+                <div class="form-group" style="border-top: 1px solid var(--border-color); padding-top: 14px; margin-top: 10px;">
+                    <h3 class="section-title" style="border-left: 3px solid var(--primary); padding-left: 8px;">🛠️ 고급 작성 옵션 (SOTA)</h3>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+                        <div class="form-group" style="margin-bottom: 6px;">
+                            <label for="select-tone-style">제안서 어조 및 스타일</label>
+                            <select id="select-tone-style" class="dropdown" style="padding: 8px 12px; font-size: 12px;">
+                                <option value="gov_std">행정/공공 서식 표준 (공식 체계)</option>
+                                <option value="pitch_persuasive">Persuasive Pitch (설득/투자 유치)</option>
+                                <option value="academic_tech">학술 R&D 보고서 (기술적 지표 강조)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group" style="margin-bottom: 6px;">
+                            <label for="select-trl-level">기술 성숙도 목표 (TRL)</label>
+                            <select id="select-trl-level" class="dropdown" style="padding: 8px 12px; font-size: 12px;">
+                                <option value="trl3">TRL 3-4 (실험실/개념 검증 PoC)</option>
+                                <option value="trl6">TRL 5-6 (시제품 제작 및 현장 적용)</option>
+                                <option value="trl8">TRL 7-8 (실제 상용화 및 실증 운영)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API Keys & Video API Selection Section (User Input Runtime) -->
+                <div class="form-group" style="border-top: 1px solid var(--border-color); padding-top: 14px; margin-top: 10px;">
+                    <h3 class="section-title" style="border-left: 3px solid var(--secondary); padding-left: 8px;">🔑 사용자 API 키 설정 (런타임)</h3>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+                        <div class="form-group" style="margin-bottom: 8px;">
+                            <label for="input-llm-key">LLM API Key (Claude / GPT / Gemini)</label>
+                            <input type="password" id="input-llm-key" class="dropdown" style="padding: 8px 12px; font-size: 12px;" placeholder="sk-... 또는 여기에 입력하여 사용">
+                            <span style="font-size: 10px; color: var(--text-secondary); margin-top: 4px; line-height: 1.3;">
+                                API 키 발급: 
+                                <a href="https://console.anthropic.com/" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 500;">Anthropic</a> | 
+                                <a href="https://platform.openai.com/api-keys" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 500;">OpenAI</a> | 
+                                <a href="https://aistudio.google.com/" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 500;">Gemini</a>
+                            </span>
+                            <!-- LLM API Connection Test Button -->
+                            <button type="button" class="slide-nav-btn" id="btn-test-llm-key" style="width: 100%; padding: 6px; margin-top: 6px; background: rgba(37,99,235,0.05); color: var(--primary); border: 1px solid rgba(37,99,235,0.15); font-size: 11px;" onclick="testLlmKeyConnection()">
+                                🔌 LLM API 연결 테스트
+                            </button>
+                        </div>
+                        
+                        <div class="form-group" style="margin-bottom: 8px; border-top: 1px dashed var(--border-color); padding-top: 8px;">
+                            <label for="input-video-api-key">Video API Key</label>
+                            <input type="password" id="input-video-api-key" class="dropdown" style="padding: 8px 12px; font-size: 12px;" placeholder="Video 생성 API 키 입력">
+                            <span style="font-size: 10px; color: var(--text-secondary); margin-top: 4px; line-height: 1.3;">
+                                API 키 발급: 
+                                <a href="https://higgsfield.ai/" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 500;">Higgsfield</a> | 
+                                <a href="https://runwayml.com/api" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 500;">Runway API</a>
+                            </span>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 8px;">
+                            <label for="select-video-api-provider">동영상 생성 API 선택</label>
+                            <select id="select-video-api-provider" class="dropdown" style="padding: 8px 12px; font-size: 12px;">
+                                <option value="higgsfield">힉스필드 (Higgsfield - 캐릭터/모션 강점)</option>
+                                <option value="runway">런웨이 (Runway Gen-3 - 시네마틱/배경 강점)</option>
+                            </select>
+                            <!-- Video API Connection Test Button -->
+                            <button type="button" class="slide-nav-btn" id="btn-test-video-key" style="width: 100%; padding: 6px; margin-top: 6px; background: rgba(37,99,235,0.05); color: var(--primary); border: 1px solid rgba(37,99,235,0.15); font-size: 11px;" onclick="testVideoKeyConnection()">
+                                🔌 Video API 연결 테스트
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agent Engineering Controls -->
+                <div class="cost-panel" style="margin-top: 10px;">
+                    <h3 class="section-title">⚙️ SOTA 에이전트 엔지니어링</h3>
+                    <div class="toggle-group">
+                        <div class="toggle-item">
+                            <label for="check-context-eng">Context Engineering (프롬프트 캐싱)</label>
+                            <input type="checkbox" id="check-context-eng" checked>
+                        </div>
+                        <div class="toggle-item">
+                            <label for="check-harness-eng">Harness Engineering (검증 하네스)</label>
+                            <input type="checkbox" id="check-harness-eng" checked>
+                        </div>
+                        <div class="toggle-item">
+                            <label for="check-loop-eng">Loop Engineering (Fuzzy Constraint 보정)</label>
+                            <input type="checkbox" id="check-loop-eng" checked>
+                        </div>
+                    </div>
+
+                    <h3 class="section-title" style="margin-top: 15px;">💰 API 비용 최적화 제어</h3>
+                    <div class="toggle-group" style="background: rgba(0,0,0,0.02); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 12px;">
+                        <div class="toggle-item">
+                            <span style="color: var(--text-secondary); font-size: 12px;">최적화 전 원가:</span>
+                            <span id="val-raw-cost" style="font-weight: 700; text-decoration: line-through; color: var(--text-muted);">$12.50</span>
+                        </div>
+                        <div class="toggle-item" style="margin-top: 4px;">
+                            <span style="color: var(--text-primary); font-size: 13px; font-weight: 600;">최적화 후 예상가:</span>
+                            <span id="val-optimized-cost" style="font-weight: 800; color: var(--primary); font-size: 15px;">$1.25</span>
+                        </div>
+                        <div class="toggle-item" style="margin-top: 4px; border-top: 1px solid var(--border-color); padding-top: 6px;">
+                            <span style="color: var(--accent-green); font-size: 12px; font-weight: 600;">총 절감 비용 비율:</span>
+                            <span id="val-savings-pct" style="font-weight: 800; color: var(--accent-green); font-size: 13px;">90%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-action" id="btn-run-simulation">
+                    <span>⚡ SOTA 에이전트 협업 실행</span>
+                </button>
+            </aside>
+
+            <!-- Main Workspace: Agents Workflow & Deliverables -->
+            <main class="workspace-main">
+                <!-- AI Agent Team Workflow Board (Top) -->
+                <section class="glass-panel agents-workflow-board">
+                    <!-- PM Card -->
+                    <div class="agent-card" id="card-pm">
+                        <div class="agent-header">
+                            <span class="agent-badge pm-badge">PM</span>
+                            <div class="agent-status-indicator"></div>
+                        </div>
+                        <div class="agent-role" id="agent-role-pm">Strategy Lead (PM)</div>
+                        <div class="agent-desc" id="agent-desc-pm">전체 프로젝트 통제 및 공익-수익 밸런싱</div>
+                        <div class="agent-log" id="log-pm">대기 중...</div>
+                        <div style="display:none;" id="agent-prompt-pm"></div>
+                    </div>
+                    
+                    <!-- BM Card -->
+                    <div class="agent-card" id="card-bm">
+                        <div class="agent-header">
+                            <span class="agent-badge bm-badge">BM</span>
+                            <div class="agent-status-indicator"></div>
+                        </div>
+                        <div class="agent-role" id="agent-role-bm">BM Architect</div>
+                        <div class="agent-desc" id="agent-desc-bm">B2C/B2B/B2G 비즈니스 모델 설계</div>
+                        <div class="agent-log" id="log-bm">대기 중...</div>
+                        <div style="display:none;" id="agent-prompt-bm"></div>
+                    </div>
+                    
+                    <!-- Ops Card -->
+                    <div class="agent-card" id="card-ops">
+                        <div class="agent-header">
+                            <span class="agent-badge ops-badge">Ops</span>
+                            <div class="agent-status-indicator"></div>
+                        </div>
+                        <div class="agent-role" id="agent-role-ops">Ops Specialist</div>
+                        <div class="agent-desc" id="agent-desc-ops">행사 운영 기획 및 인력 매칭 구조화</div>
+                        <div class="agent-log" id="log-ops">대기 중...</div>
+                        <div style="display:none;" id="agent-prompt-ops"></div>
+                    </div>
+                    
+                    <!-- Creative Card -->
+                    <div class="agent-card" id="card-creative">
+                        <div class="agent-header">
+                            <span class="agent-badge creative-badge">Creative</span>
+                            <div class="agent-status-indicator"></div>
+                        </div>
+                        <div class="agent-role" id="agent-role-creative">Creative Director</div>
+                        <div class="agent-desc" id="agent-desc-creative">제안서 라이팅 및 1분 영상 구성</div>
+                        <div class="agent-log" id="log-creative">대기 중...</div>
+                        <div style="display:none;" id="agent-prompt-creative"></div>
+                    </div>
+                </section>
+
+                <!-- Live Agent Engineering Monitor Output (Fuzzy Constraint Log) -->
+                <section class="glass-panel" style="padding: 12px 20px; font-family: monospace; font-size: 11px; background: rgba(0,0,0,0.02); display: flex; flex-direction: column; gap: 4px; border: 1px solid var(--border-color); border-radius: 12px; max-height: 100px; overflow-y: auto;">
+                    <div style="color: var(--text-primary); font-weight: 700; margin-bottom: 2px;">🖥️ 에이전트 엔지니어링 실시간 실행 로그 (Harness & Loop Monitor)</div>
+                    <div id="monitor-log-area" style="color: var(--text-secondary);">시뮬레이션을 시작하면 실시간 분석 데이터가 여기에 표시됩니다...</div>
+                </section>
+
+                <!-- Deliverables Output Hub (Bottom) -->
+                <section class="glass-panel deliverables-hub">
+                    <div class="tabs-header">
+                        <div class="tab-buttons">
+                            <button class="tab-btn active" data-tab="proposal" id="tab-proposal">📄 10P 상세 제안서 (페이지별 빌더)</button>
+                            <button class="tab-btn" data-tab="summary" id="tab-summary">⚡ 1P 정부양식 요약서</button>
+                            <button class="tab-btn" data-tab="slides" id="tab-slides">📊 웹 슬라이드 피치덱</button>
+                            <button class="tab-btn" data-tab="video" id="tab-video">🎬 1분 영상 기획 (API 선택형)</button>
+                            <button class="tab-btn" data-tab="evaluation" id="tab-evaluation">🔍 자체 평가 및 분석 (가점/보완)</button>
+                        </div>
+                        
+                        <!-- Toggle for Video Mode -->
+                        <div class="video-mode-selector" id="video-mode-wrapper" style="display: none;">
+                            <button class="video-mode-btn active" data-mode="basic" id="btn-video-basic">🟢 기본형 (Gemini 이미지)</button>
+                            <button class="video-mode-btn" data-mode="premium" id="btn-video-premium">🔵 고급형 (동영상 API)</button>
+                        </div>
+                        
+                        <div class="live-saving-ticker">
+                            <div class="ticker-item">
+                                <span class="label">예상 단가:</span>
+                                <span class="value" id="ticker-val-cost">$1.25</span>
+                            </div>
+                            <div class="ticker-item" style="border-left: 1px solid var(--border-color); padding-left: 12px;">
+                                <span class="label">절감율:</span>
+                                <span class="value savings" id="ticker-val-saving">90% 절감</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Content Viewer -->
+                    <div class="deliverables-content" id="deliverables-text-viewer">
+                        <!-- Markdown text or slides will be parsed and injected here -->
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
